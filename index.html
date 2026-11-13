@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalesPilot | Sales Prediction System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginScreen" class="login-screen">
+    <div class="login-card">
+        <h1>📈 SalesPilot</h1>
+        <p>E-Commerce Sales Prediction System</p>
+
+        <form id="loginForm">
+            <label>Email / Username</label>
+            <input type="text" id="loginUsername" placeholder="Enter username" required>
+
+            <label>Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter password" required>
+
+            <p id="loginError" class="error"></p>
+            <button type="submit" class="primary-btn">Sign In</button>
+        </form>
+
+        <div class="demo">
+            Demo Login<br>
+            Username: admin<br>
+            Password: Admin@123
+        </div>
+    </div>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="appContent" hidden>
+
+<header>
+    <div class="logo">📈 SalesPilot</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#products">Products</a>
+        <a href="#sales">Sales</a>
+        <a href="#prediction">Prediction</a>
+        <a href="#history">History</a>
+    </nav>
+
+    <button id="logoutButton" class="logout-btn">Logout</button>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="hero">
+    <div>
+        <h1>Welcome to SalesPilot</h1>
+        <p>Manage your products, analyze sales and predict future business growth.</p>
+        <a href="#dashboard"><button class="primary-btn">Explore Dashboard</button></a>
+    </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+    <h2>Dashboard Overview</h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <p>Total Revenue</p>
+            <h2 id="revenue">₹0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Units Sold</p>
+            <h2 id="units">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Total Products</p>
+            <h2 id="productCount">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Transactions</p>
+            <h2 id="transactions">0</h2>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Product Revenue Analytics</h3>
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+    <h2>Product Management</h2>
+
+    <div class="panel">
+        <form id="productForm" class="form-grid">
+            <div>
+                <label>Product Name</label>
+                <input id="productName" type="text" placeholder="Product name" required>
+            </div>
+
+            <div>
+                <label>Price (₹)</label>
+                <input id="productPrice" type="number" min="0.01" step="0.01" required>
+            </div>
+
+            <div>
+                <label>Stock Quantity</label>
+                <input id="productStock" type="number" min="0" step="1" value="20" required>
+            </div>
+
+            <button class="primary-btn" type="submit">Add Product</button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <h3>Available Products</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Sold</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- SALES -->
+<section id="sales">
+    <h2>Record New Sale</h2>
+
+    <div class="panel">
+        <form id="salesForm">
+            <label>Select Product</label>
+            <select id="saleProduct" required></select>
+
+            <label>Quantity</label>
+            <input type="number" id="saleQuantity" min="1" step="1" required>
+
+            <button class="primary-btn" type="submit">Record Sale</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+</section>
+
+<!-- PREDICTION -->
+<section id="prediction">
+    <h2>Sales Prediction</h2>
+
+    <div class="panel">
+        <form id="predictionForm">
+            <label>Select Product</label>
+            <select id="predictionProduct" required></select>
+
+            <label>Prediction Period</label>
+            <select id="predictionDays">
+                <option value="7">Next 7 Days</option>
+                <option value="30">Next 30 Days</option>
+            </select>
+
+            <button class="primary-btn" type="submit">Predict Sales</button>
+        </form>
+
+        <div id="predictionResult" class="prediction-result">
+            Your prediction will appear here.
+        </div>
+    </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+    <h2>Sales History</h2>
+
+    <div class="panel">
+        <input type="text" id="searchSales" placeholder="Search sales by product name...">
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTable"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 SalesPilot | E-Commerce Sales Prediction System</p>
+    <p>Developed by R. Sahith | SPSU</p>
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
